@@ -12,7 +12,7 @@ pipeline {
         stage('Create Virtual Environment') {
             steps {
                 bat '''
-                python -m venv venv
+                'C:\\Users\\Vinu\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe -m venv venv'
                 '''
             }
         }
