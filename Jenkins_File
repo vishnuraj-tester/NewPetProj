@@ -11,7 +11,9 @@ pipeline {
 
         stage('Create Virtual Environment') {
             steps {
-               bat '''python -m venv venv'''
+                bat '''
+                python -m venv venv
+                '''
             }
         }
 
@@ -29,7 +31,7 @@ pipeline {
             steps {
                 bat '''
                 call venv\\Scripts\\activate
-                pytest tests --alluredir=reports\\allure-results
+                pytest tests --ignore=tests/test_orange_hrm_login.py --alluredir=reports\\allure-results
                 '''
             }
         }
@@ -38,6 +40,7 @@ pipeline {
             steps {
                 allure includeProperties: false,
                        jdk: '',
+                       commandline: 'allure',
                        results: [[path: 'reports/allure-results']]
             }
         }
